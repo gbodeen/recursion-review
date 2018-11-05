@@ -4,7 +4,15 @@
 // };
 
 // But instead we're going to implement it from scratch:
-var getElementsByClassName = function(className
-) {
-  // your code here
+var getElementsByClassName = function(className, node = document.body, results = []) {
+  
+  if (node.className && node.className.split(' ').includes(className)) {
+    results.push(node);
+  }
+  
+  for (let child of node.childNodes) {
+    getElementsByClassName(className, child, results);
+  }
+  
+  return results;
 };
